@@ -11,7 +11,7 @@ class AddressAutocomplete extends React.Component {
   }
 
   componentDidMount() {
-    this.autocomplete = new window.google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
+    this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
 
     this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
   }
@@ -33,6 +33,7 @@ class AddressAutocomplete extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    this.props.dispatch(addParlor(this.state))
     this.clearForm()
   }
 
@@ -52,7 +53,7 @@ class AddressAutocomplete extends React.Component {
   render() {
     return(
       <div>
-        <h1>Enter your address</h1>
+        <h1>Add New Parlor</h1>
         <form onSubmit={this.handleSubmit}>
           <input id="autocomplete"
             className="input-field"

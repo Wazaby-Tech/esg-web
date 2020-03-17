@@ -11,7 +11,7 @@ class AddressAutocomplete extends React.Component {
   }
 
   componentDidMount() {
-    this.autocomplete = new window.google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
+    this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
 
     this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
   }

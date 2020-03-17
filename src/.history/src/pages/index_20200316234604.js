@@ -5,6 +5,7 @@ import AddressAutocomplete from "../components/addressAutocomplete"
 
 export default () => (
     <div>
+        <p>Enter your address:</p>
         <AddressAutocomplete />
     </div>
 )
