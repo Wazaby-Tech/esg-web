@@ -1,4 +1,5 @@
 import React from 'react'
+import addressAutocompleteStyles from './addressAutocomplete.module.css'
 
 class AddressAutocomplete extends React.Component {
   constructor(props) {
@@ -33,18 +34,20 @@ class AddressAutocomplete extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.clearForm()
+    window.open("mailto:wazabytech@outlook.com?subject=Property%20Inquiry");
   }
 
   handlePlaceSelect() {
     let addressObject = this.autocomplete.getPlace()
+    console.log(addressObject);
     let address = addressObject.address_components
+    console.log(address);
     this.setState({
       name: addressObject.name,
       street_address: `${address[0].long_name} ${address[1].long_name}`,
-      city: address[4].long_name,
-      state: address[6].short_name,
-      zip_code: address[8].short_name,
+      city: address[3].long_name,
+      state: address[5].short_name,
+      zip_code: address[7].short_name,
       googleMapLink: addressObject.url
     })
   }
@@ -52,10 +55,10 @@ class AddressAutocomplete extends React.Component {
   render() {
     return(
       <div>
-        <h1>Enter your address</h1>
+        <h4>Enter your address</h4>
         <form onSubmit={this.handleSubmit}>
           <input id="autocomplete"
-            className="input-field"
+            className={addressAutocompleteStyles.inputField}
             ref="input"
             type="text"/>
             <input 
@@ -70,6 +73,7 @@ class AddressAutocomplete extends React.Component {
               placeholder={"Street Address"}
               onChange={this.handleChange}
             />
+            <br />
             <input 
               name={"city"}
               value={this.state.city}
@@ -88,6 +92,7 @@ class AddressAutocomplete extends React.Component {
               placeholder={"Zipcode"}
               onChange={this.handleChange}
             />
+            <br />
             <button onSubmit={this.handleSubmit}>Submit</button>
         </form>
       </div>

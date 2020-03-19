@@ -1,10 +1,13 @@
+
+
 html {
     background-color: #fff;
   }
   
   body {  
+    color: darkblue;
     font-family: Verdana, Arial;
-    font-size: 11pt;
+    font-size: 12pt;
   }
   
   h1 {
