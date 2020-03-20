@@ -20,6 +20,7 @@ class AddressAutocomplete extends React.Component {
   initialState() {
     return {
       name: '',
+      askingPrice: 0,
       street_address: '',
       city: '',
       state: '',
@@ -61,33 +62,44 @@ class AddressAutocomplete extends React.Component {
             className={addressAutocompleteStyles.inputField}
             ref="input"
             type="text"/>
+          <input name={"askingPrice"}
+            className={addressAutocompleteStyles.formField}
+            placeholder="Enter Asking Price..."
+            value={this.state.askingPrice}
+            type="number" step="500" min="0" />
             <input 
               name={"name"}
+              className={addressAutocompleteStyles.formField}
               value={this.state.name}
               placeholder={"Name"}
               onChange={this.handleChange}
             />
+            <br/>
             <input 
               name={"street_address"}
+              className={addressAutocompleteStyles.formField}
               value={this.state.street_address}
               placeholder={"Street Address"}
               onChange={this.handleChange}
             />
-            <br />
             <input 
               name={"city"}
+              className={addressAutocompleteStyles.formField}
               value={this.state.city}
               placeholder={"City"}
               onChange={this.handleChange}
             />
+            <br/>
             <input
               name={"state"}
+              className={addressAutocompleteStyles.formField}
               value={this.state.state}
               placeholder={"State"}
               onChange={this.handleChange}
             />
             <input 
               name={"zip_code"}
+              className={addressAutocompleteStyles.formField}
               value={this.state.zip_code}
               placeholder={"Zipcode"}
               onChange={this.handleChange}
