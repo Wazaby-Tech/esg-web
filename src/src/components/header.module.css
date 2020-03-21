@@ -1,0 +1,16 @@
+.header {
+    max-height: 6em;
+}
+
+.logo {
+    max-height: 6em;
+    float: left;
+}
+
+.links {
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
