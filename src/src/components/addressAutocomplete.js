@@ -1,4 +1,6 @@
+// require('custom-env').env();
 import React from 'react'
+import sgMail from '@sendgrid/mail'
 import addressAutocompleteStyles from './addressAutocomplete.module.css'
 
 class AddressAutocomplete extends React.Component {
@@ -9,6 +11,7 @@ class AddressAutocomplete extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.autocomplete = null
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   }
 
   componentDidMount() {
@@ -19,8 +22,9 @@ class AddressAutocomplete extends React.Component {
 
   initialState() {
     return {
-      name: '',
+      email: '',
       asking_price: '1000',
+      name: '',
       street_address: '',
       city: '',
       state: '',
@@ -34,8 +38,16 @@ class AddressAutocomplete extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault()
-    window.open("mailto:wazabytech@outlook.com?subject=Property%20Inquiry");
+    event.preventDefault();
+    let emailBody = `You have a property inquiry from ${this.state.email} with asking price of $${this.state.asking_price} for:\n\n${this.state.name}.`;
+    const msg = {
+      to: 'wazabytech@outlook.com',
+      from: 'wazabytech@outlook.com',
+      subject: 'Property Inquiry',
+      text: emailBody,
+      html: `<p>${emailBody}</p>`,
+    };
+    sgMail.send(msg);
   }
 
   handlePlaceSelect() {
@@ -59,18 +71,27 @@ class AddressAutocomplete extends React.Component {
         <h4>Enter your address</h4>
         <form onSubmit={this.handleSubmit}>
           <input id="autocomplete"
-            className={addressAutocompleteStyles.inputField}
+            className={addressAutocompleteStyles.addressField}
             ref="input"
             type="text"/>
             <button onSubmit={this.handleSubmit}>Get Cash Offer</button>
             <table>
               <tr>
+                <td>Email Address:</td>
+                <td>
+                  <input id="email-address"
+                    className={addressAutocompleteStyles.inputField}
+                    placeholder="Enter email address..."
+                    type="email" />
+                </td>
+              </tr>
+              <tr>
                 <td>Asking Price:</td>
                 <td>$
-                  <input name={"asking_price"}
-                    className={addressAutocompleteStyles.formField}
-                    value={this.state.asking_price}
-                    type="text" />
+                  <input id="asking-price"
+                    className={addressAutocompleteStyles.inputField}
+                    min="1000" placeholder="Enter asking price..."
+                    type="number" />
                 </td>
               </tr>
             </table>
