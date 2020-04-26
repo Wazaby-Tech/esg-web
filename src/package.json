@@ -17,6 +17,7 @@
     "@sendgrid/mail": "^7.0.0",
     "gatsby": "^2.19.7",
     "gatsby-plugin-typography": "^2.3.25",
+    "npm": "^6.14.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-modal": "^3.11.2",
