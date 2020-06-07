@@ -29,4 +29,10 @@ export default function (Vue, { router, head, isClient }) {
     rel: 'manifest',
     href: '/site.webmanifest'
   });
+
+  head.script.push({
+    type: 'text/javascript',
+    src: `https://maps.googleapis.com/maps/api/js?libraries=places&key=${process.env.GRIDSOME_GOOGLE_PLACES_API_KEY}`,
+    body: true
+  });
 }
